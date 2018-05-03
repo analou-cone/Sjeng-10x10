@@ -1,102 +1,48 @@
-What is Sjeng ?
----------------
+# What is Decachess?
 
-Sjeng is a chessprogram that plays many variants. 
+It is a 10x10 chess variant with all the pieces set on the center 8 columns on
+the furthest rows from the center.
 
-In addition to that, it can also play normal chess quite well and is fully
-compatible with the standard XBoard/WinBoard protocol (version 1 and 2). Sjeng
-also supports some broken WinBoard implementations, such as the one present in
-the ChessBase/Fritz WinBoard adapter.
+![Decachess Thinking about its Next Move](Assets/Decachess-Thinking.jpg)
 
-Technically, Sjeng is a highly advanced alpha-beta searcher, using modern
+It is built on top of the original Sjeng 8x8 chess engine.
+
+Technically, Sjeng-10x10 is a highly advanced alpha-beta searcher, using modern
 techniques like history and killer moves, transposition tables, SEE move
 ordering and pruning, and search enhancements like selective extensions,
 Aspiration Principal Variation Search, Adaptive nullmove pruning,
 Extended Futility Pruning and Limited Razoring. Sjeng can use an
 opening book and learns from the games it plays. 
 
-In its suicide and losers mode, Sjeng use proof-number searches to quickly
-find forced wins. Sjeng plays at the same level that the best humans are
-capable of.
 
-On 14th of October 2000, Sjeng won it's first title by becoming the World
-Computer Crazyhouse Chess Champion.
+# How do I get it to work?
 
-On December 31th 2000, Sjeng became the first computer program to reach the #1
-spot on the crazyhouse rating list on the Free Internet Chess Server. It had
-been #1 on the Internet Chess Club before.
-
-Early 2001 Sjeng became the #1 losers/giveaway player on the Internet Chess
-Club.
+Do not expect this to be easy. It was working at one point on Linux and OSX
+but it got rusty. There will be some effort to modernise the libraries.
 
 
-What variants are supported ?
------------------------------
+# Building it
 
-Sjeng currently plays standard chess, crazyhouse, bughouse, suicide (aka
-giveaway or anti-chess) and losers. It can also play variants which
-have the same rules as normal chess, but a different starting position.
+## GNU/Linux, FreeBSD, other Unix variants:
 
-This version also plays Sjeng-10x10, a variant of chess played on a 10x10 chess
-board.
-
-
-How do I get it to work ?
--------------------------
-
- Building it
- -----------
-
-    GNU/Linux, FreeBSD, other Un*x variants:
-    ----------------------------------------
- 
-    Building Sjeng should be as simple as:
+Building Sjeng-10x10 should one day be as simple as:
 
     ./configure
     make
     (su to root if needed)
     make install
  
-    If you notice Sjeng is only reporting time in full second
-    increments, edit config.h and change #define HAVE_FTIME
-    into #undef HAVE_FTIME.
+If you notice Sjeng is only reporting time in full second increments, edit
+config.h and change `#define HAVE_FTIME` into `#undef HAVE_FTIME`.
 
-    Windows
-    -------
+## Windows, Etc
 
-    I have succesfully compiled Sjeng with Microsoft Visual C++.
-    Other compilers are not tested, but may also work.
-    
-    The easiest way is to locate a Windows port of Sjeng's
-    sources, which you can compile out-of-the-box. If those
-    are not available, follow these instructions:
-    
-    You need to find a Windows port of the GDBM library. 
-    There are several (free) ones available on the internet.
+Probably not soon, but perhaps one day under Cygwin, etc.
 
-    You will have to create a config.h file which contains
-    
-    #define HAVE_SYS_TIMEB_H
-    #define HAVE_FTIME
-    #define VERSION "11.2"
-
-    You may have to define _WIN32 also, if your compiler
-    doesn't already do so.
-
-    You also need an implementation of the strcasecmp
-    function. An implementation is available in the file 
-    strcasec.c in the DJGPP distribution.
-
-    Alternatively you can use the Cygnus utilities. I have
-    never used them myself so I cannot help you there, but
-    I have had reports from users which successfully built
-    Sjeng with it.
  
- 
-The opening books
------------------
+# The opening books
 
-Sjeng uses two kind of books: .opn books and binary books
+Sjeng-10x10 uses two kind of books: .opn books and binary books
 
 The .opn books are intended to be created manually, and are ideal for getting
 Sjeng to play your favorite openings.  Some examples are in the books
@@ -131,15 +77,13 @@ A PGN database of some high-quality crazyhouse games is available at
 ftp://sjeng.sourceforge.net/pub/sjeng/zhbook.pgn
 
 
-Getting an interface
---------------------
+# Getting an interface
 
 You can start Sjeng now by typing 'sjeng', but you will probably find the
 text-based interface unpleasant.
 
 
-Generating endgame databases
--------------------------
+# Generating endgame databases
 
 Sjeng support endgame databases for the suicide
 variant. You can generate them as follows:
@@ -150,9 +94,8 @@ variant. You can generate them as follows:
 This will take an hour or so, depending on the speed of your computer.
 
 
-Tuning Sjeng
-------------
-
+# Tuning Sjeng
+ 
 A great deal Sjeng's workings can be customized without recompiling it. You
 should take a look at sjeng.rc and adjust the parameters to your likings.
 Especially the first three are imporant because they control how much memory
@@ -160,8 +103,7 @@ Sjeng will use for transposition tables and caches.  If those are set too big
 for your RAM, Sjeng will crash.
 
 
-Copying/Distribution
---------------------
+# Copying/Distribution
 
 Sjeng is Free Software and is licensed under the GNU General Public License.
 For more details see the file COPYING that comes with Sjeng. 
